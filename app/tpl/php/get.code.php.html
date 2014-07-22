@@ -1,0 +1,8 @@
+
+include 'config.php';
+
+$statement = $db->prepare("SELECT id,humidity,temperature,createat FROM dht22 ORDER BY id DESC");
+$statement->execute();
+$row = $statement->fetchAll();
+$out = array_values($row);
+echo json_encode($out);

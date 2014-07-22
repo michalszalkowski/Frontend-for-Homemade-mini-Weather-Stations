@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="louisApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+	<title>Louis Home System Btbw</title>
+
+	<link href="lib/bootstrap/css/bootstrap.min-dark.css" rel="stylesheet">
+	<link href="app/css/main.css" rel="stylesheet">
+	<link href="app/css/button.css" rel="stylesheet">
+
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+
+<body>
+
+
+<div id="main">
+
+	<div id="header">
+		<span class="logo"><span class="glyphicon glyphicon-fire"></span> Louis Home System <span class="btbw"><a href="http://btbw.pl/" target="_blank">Btbw</a></span></span>
+	</div>
+
+	<div id="sidebar">
+		<ul class="sidebar-menu" ng-controller="MenuCtrl">
+			<li><a href="#" ng-class="getClass('/dashboard')"><span class="glyphicon glyphicon-calendar"></span>  Dashboard</a></li>
+			<li><a href="#/table" ng-class="getClass('/table')"><span class="glyphicon glyphicon-tasks"></span>  Table</a></li>
+			<li><a href="#/chart" ng-class="getClass('/chart')"><span class="glyphicon glyphicon-tasks"></span>  Chart</a></li>
+		</ul>
+	</div>
+
+	<div id="center">
+		<div class="container"><section ng-view></section></div>
+	</div>
+</div>
+
+<script src="lib/jquery.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js "></script>
+
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/angular/angular-route.min.js"></script>
+<script src="lib/angular/angular-resource.min.js"></script>
+<script src="lib/angular/angular-local-storage.js"></script>
+
+<script src="app/app.js"></script>
+
+<script src="app/controller.home.js"></script>
+<script src="app/controller.table.js"></script>
+<script src="app/controller.chart.js"></script>
+<script src="app/factory.js"></script>
+
+</body>
+</html>

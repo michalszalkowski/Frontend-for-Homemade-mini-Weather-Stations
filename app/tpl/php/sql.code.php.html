@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS `dht22` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`humidity` varchar(10) NOT NULL,
+`temperature` varchar(10) NOT NULL,
+`createat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin2 AUTO_INCREMENT=1;

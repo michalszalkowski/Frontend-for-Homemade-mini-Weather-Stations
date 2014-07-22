@@ -1,0 +1,74 @@
+	//Ethernet
+	#include "SPI.h"
+	#include "Ethernet.h"
+	byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+	char server[] = "louis.btbw.pl";
+	IPAddress ip(192,168,0,177);
+
+	//DHT
+	#include "DHT.h"
+	#define DHTPIN 2
+	#define DHTTYPE DHT22
+	DHT dht(DHTPIN, DHTTYPE);
+
+	char rhPct[6]; // buffer for humidity incl. decimal point
+	char tempF[6]; // buffer for temp incl. decimal point
+
+	void setup() {
+		Serial.begin(9600);
+		dht.begin();
+	}
+
+	void loop() {
+		//DHT22
+		float h = dht.readHumidity();
+		float t = dht.readTemperature();
+		if (isnan(h) || isnan(t)) {
+			Serial.println("Failed to read from DHT sensor!");
+			return;
+		}
+
+		dtostrf(h, 5, 2, rhPct);
+		dtostrf(t, 5, 2, tempF);
+
+		//data for send
+		String data = "GET /create.php";
+		data += "?h=";
+		data += rhPct;
+		data += "&t=";
+		data += tempF;
+		data += "&token=";
+		data += "123456789";
+		data += " HTTP/1.1";
+		Serial.println(data);
+
+		//ETHERNET
+		sendDataToServerGET(data);
+		delay(10L * 60L * 1000L);
+	}
+
+	void sendDataToServerGET(String data) {
+
+		Serial.println("init function sendDataToServer");
+
+		EthernetClient client;
+
+		if (Ethernet.begin(mac) == 0) {
+			Serial.println("Failed to configure Ethernet using DHCP");
+			Ethernet.begin(mac, ip);
+		}
+
+		delay(1000);
+		Serial.println("connecting...");
+
+		if (client.connect(server, 80)) {
+			Serial.println("connected");
+			client.println(data);
+			client.println("Host: louis.btbw.pl");
+			client.println("Connection: close");
+			client.println();
+		}
+		else {
+			Serial.println("connection failed");
+		}
+	}

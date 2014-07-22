@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-xs-12 action-top-bar">
+		<h1>Temperature / Humidity</h1>
+	</div>
+
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Temperature / Humidity</h3>
+			</div>
+			<div class="panel-body">
+
+				<table class="table table-striped">
+					<thead>
+					<tr>
+						<th>#</th>
+						<th>Humidity</th>
+						<th>Temperature</th>
+						<th>Create At</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="row in data">
+						<td>{{row.id}}</td>
+						<td>{{row.humidity}}</td>
+						<td>{{row.temperature}}</td>
+						<td>{{row.createat}}</td>
+					</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+</div>

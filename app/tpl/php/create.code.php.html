@@ -1,0 +1,13 @@
+
+include 'config.php';
+
+$humidity = $_GET['humidity'];
+$temperature = $_GET['temperature'];
+if($_GET['token'] != "123456789") {
+die();
+}
+
+$sql = "INSERT INTO dht22 ( humidity, temperature) VALUES ( :humidity, :temperature)";
+
+$query = $db->prepare($sql);
+$query->execute(array(':humidity' => $humidity, ':temperature' => $temperature));
